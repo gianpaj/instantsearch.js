@@ -3,11 +3,12 @@ import parseAlgoliaHit from '../core/highlight';
 
 import highlightTags from '../core/highlightTags.js';
 
-const highlight = ({attributeName, hit}) => parseAlgoliaHit({
+const highlight = ({attributeName, hit, path}) => parseAlgoliaHit({
   attributeName,
   hit,
   preTag: highlightTags.highlightPreTag,
   postTag: highlightTags.highlightPostTag,
+  path,
 });
 
 /**
@@ -17,7 +18,7 @@ const highlight = ({attributeName, hit}) => parseAlgoliaHit({
  * @name connectHighlight
  * @kind connector
  * @category connector
- * @providedPropType {function} highlight - the function to retrieve and parse an attribute from a hit. It takes a configuration object with 2 attribute: `attributeName` which is the path to the attribute in the record, and `hit` which is the hit from Algolia. It returns an array of object `{value: string, isHighlighted: boolean}`.
+ * @providedPropType {function} highlight - the function to retrieve and parse an attribute from a hit. It takes a configuration object with 3 attribute: `path` which is the path to the structure containing the attribute in the record, `attributeName` which is the name of the attribute to look for and `hit` which is the hit from Algolia. It returns an array of object `{value: string, isHighlighted: boolean}`.
  * @example
  * const CustomHighlight = connectHighlight(({highlight, attributeName, hit) => {
  *   const parsedHit = highlight({attributeName, hit});
